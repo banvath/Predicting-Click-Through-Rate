@@ -113,6 +113,7 @@ rf <- ranger(click ~., data=d_cal, num.trees = 150, probability=T)
 saveRDS(rf, "rf.rds")
 pred_rf <- predict(rf, data=d_val)
 
+
 col_pick <- which.min(apply(pred_rf$predictions, 2, mean))
 
 PHat <- pred_rf$predictions[,col_pick] # verify using col 1 rather than 2, depends on how data was factored and read from csv. Use the col that has the smaller predictions--that's the Pr of click.
